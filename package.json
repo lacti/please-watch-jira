@@ -1,0 +1,49 @@
+{
+  "name": "chrome-extension-react-typescript-parcel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "build": "parcel build --public-url . src/*.html src/execute.*.ts",
+    "start": "yarn build && node build-watch.js",
+    "prebuild": "rm -rf dist",
+    "postbuild": "cp -r assets/* dist/"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.117",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "epipebomb": "^1.0.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "execa": "^4.0.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "node-watch": "^0.6.4",
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "@zeit-ui/react": "^1.8.0-canary.4",
+    "nanoid": "^3.1.10",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  }
+}

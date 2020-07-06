@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "strict": true,
+    "target": "es5",
+    "lib": ["dom", "esnext"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "removeComments": true
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules/**/*", ".cache/**/*", "dist/**/*"]
+}

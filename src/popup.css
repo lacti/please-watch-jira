@@ -1,0 +1,8 @@
+body {
+  width: 760px;
+  height: 540px;
+}
+#App {
+  margin: 12px;
+  overflow: auto;
+}
