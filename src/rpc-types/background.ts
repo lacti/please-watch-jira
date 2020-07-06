@@ -1,2 +1,2 @@
-export const sayHello = "sayHello";
-export type SayHello = (name: string) => Promise<string>;
+export const updateContextMenu = "updateContextMenu";
+export type UpdateContextMenu = () => Promise<void>;

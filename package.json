@@ -1,7 +1,13 @@
 {
-  "name": "chrome-extension-react-typescript-parcel",
+  "name": "please-watch-jira",
+  "private": true,
+  "description": "Jira automation to add watchers easily using Chrome extension",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "author": {
+    "name": "lacti/jaeyoung.choi",
+    "email": "lactrious@dreamus.io"
+  },
   "license": "MIT",
   "scripts": {
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
@@ -32,9 +38,12 @@
   },
   "dependencies": {
     "@zeit-ui/react": "^1.8.0-canary.4",
+    "@zeit-ui/react-icons": "^1.3.0",
+    "chrome-extension-support": "^1.0.0",
     "nanoid": "^3.1.10",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "use-debounce": "^3.4.3"
   },
   "husky": {
     "hooks": {

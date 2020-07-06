@@ -1,8 +1,4 @@
-body {
-  width: 760px;
-  height: 540px;
-}
-#App {
-  margin: 12px;
-  overflow: auto;
+.GroupName .title h3 {
+  font-size: 1.2rem;
+  font-weight: normal;
 }
