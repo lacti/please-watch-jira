@@ -14,3 +14,6 @@ export type AddServicedeskWatchers = (accountIds: string[]) => Promise<boolean>;
 
 export const alert = "alert";
 export type Alert = (message: string) => Promise<void>;
+
+export const refresh = "refresh";
+export type Refresh = (options: { confirm?: boolean }) => Promise<void>;

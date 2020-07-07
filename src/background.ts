@@ -8,6 +8,7 @@ import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
 import useLogger from "chrome-extension-support/lib/logger/useLogger";
 import useMessageRPC from "chrome-extension-support/lib/rpc/useMessageRPC";
 import useWatcherGroups from "./state/useWatcherGroups";
+import windowRefresh from "./utils/windowRefresh";
 
 const logger = useLogger();
 
@@ -34,6 +35,7 @@ async function inBackground() {
       : addWatchers;
     try {
       await adder(watcherGroup.watchers.map((w) => w.accountId));
+      await windowRefresh({ confirm: true });
     } catch (error) {
       errorAlert(error);
     }
