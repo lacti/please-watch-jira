@@ -39,7 +39,7 @@ function App() {
 
   function onAdd() {
     addWatcherGroup({
-      groupName: `그룹 #${watcherGroups.length + 1}`,
+      groupName: `Group #${watcherGroups.length + 1}`,
       projectKey: "",
       watchers: [],
     })
@@ -76,7 +76,7 @@ function App() {
         </Col>
         <Col span={6} style={{ textAlign: "right" }}>
           <Button shadow type="secondary" size="mini" onClick={onAdd}>
-            Add
+            New
           </Button>
         </Col>
       </Row>

@@ -1,16 +1,11 @@
 import * as rpcTypes from "./rpc-types";
 
 import WatcherGroup from "./models/watcherGroup";
+import documentUrlPatterns from "./models/documentUrlPatterns";
 import queryTabs from "chrome-extension-support/lib/chrome/queryTabs";
 import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
 import useMessageRPC from "chrome-extension-support/lib/rpc/useMessageRPC";
 import useWatcherGroups from "./state/useWatcherGroups";
-
-const documentUrlPatterns = [
-  "*://*.atlassian.net/browse/*",
-  "*://*.atlassian.net/jira/software/projects/*/boards/*?selectedIssue/*",
-  "*://*.atlassian.net/servicedesk/*",
-];
 
 async function inBackground() {
   const { getAllWatcherGroups } = useWatcherGroups();
@@ -45,7 +40,7 @@ async function inBackground() {
 
     chrome.contextMenus.create({
       id: rootMenuId,
-      title: "Please watch Jira",
+      title: "Please watch",
       documentUrlPatterns,
     });
     const allWatcherGroups = await getAllWatcherGroups();

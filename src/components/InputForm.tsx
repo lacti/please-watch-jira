@@ -4,6 +4,8 @@ import MemberSearchInput from "./MemberSearchInput";
 import React from "react";
 import { UserX } from "@zeit-ui/react-icons";
 import WatcherGroup from "../models/watcherGroup";
+import { isAcceptableDocumentUrl } from "../models/documentUrlPatterns";
+import { queryTabs } from "chrome-extension-support";
 import unique from "../utils/unique";
 
 export default function InputForm({
@@ -20,6 +22,16 @@ export default function InputForm({
   const [watcherGroup, setWatcherGroup] = React.useState<WatcherGroup>(
     initialWatcherGroup
   );
+  const [memberSearchable, setMemberSearchable] = React.useState(false);
+
+  React.useEffect(() => {
+    queryTabs({ active: true, currentWindow: true }).then((tabs) => {
+      if (isAcceptableDocumentUrl(tabs[0]?.url)) {
+        setMemberSearchable(true);
+      }
+    });
+  }, []);
+
   function updateData(partial: Partial<WatcherGroup>) {
     const updated = { ...watcherGroup, ...partial };
     setWatcherGroup(updated);
@@ -34,8 +46,8 @@ export default function InputForm({
       <Fieldset>
         <Fieldset.Subtitle>
           <Input
-            placeholder="그룹이름"
-            label="그룹이름"
+            placeholder="Group name"
+            label="Group name"
             width="100%"
             value={watcherGroup.groupName}
             onBlur={(event) =>
@@ -46,8 +58,8 @@ export default function InputForm({
           />
           <Spacer y={0.5} />
           <Input
-            placeholder="프로젝트"
-            label="프로젝트"
+            placeholder="Project key"
+            label="Project key"
             width="100%"
             value={watcherGroup.projectKey}
             onBlur={(event) =>
@@ -80,6 +92,7 @@ export default function InputForm({
           <Spacer y={0.5} />
           <MemberSearchInput
             projectKey={watcherGroup.projectKey}
+            searchable={memberSearchable}
             onSearch={(ws) =>
               updateData({
                 watchers: unique(

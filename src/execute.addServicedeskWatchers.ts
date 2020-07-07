@@ -10,7 +10,7 @@ useExecutionRPC().serve<rpcTypes.AddServicedeskWatchers>(
   async (accountIds: string[]): Promise<boolean> => {
     const issueKey = findIssueKeyFromUrl();
     if (!issueKey) {
-      throw new Error("IssueKey를 찾을 수 없습니다.");
+      throw new Error("Cannot find Issue-key from URL.");
     }
     logger.debug("Add servicedesk watcher", accountIds, "to", issueKey);
 
