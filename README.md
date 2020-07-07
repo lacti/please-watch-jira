@@ -4,7 +4,7 @@ Chrome extension to add issue watchers easily.
 
 ## Installation
 
-1. Download latest `please-watch-jira.zip` from [releases](/releases).
+1. Download latest `please-watch-jira.zip` from [releases](https://github.com/music-flo/please-watch-jira/releases).
 2. Unpack it.
 3. Turn on `Developer mode` from [`chrome://extensions`](chrome://extensions) in your chrome browser.
    ![Chrome-extensions](./docs/chrome-extensions.png)
@@ -31,7 +31,7 @@ Chrome extension to add issue watchers easily.
 
 ## Update plugins
 
-1. Download new version from [releases](/releases) and overwrite old things.
+1. Download new version from [releases](https://github.com/music-flo/please-watch-jira/releases) and overwrite old things.
 2. Go to [`chrome://extensions`](chrome://extensions) and click _Refresh_ button.
    ![Installed](./docs/plugin-installed.png)
 
