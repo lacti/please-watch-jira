@@ -14,7 +14,9 @@
     "build": "parcel build --public-url . src/*.html src/execute.*.ts",
     "start": "yarn build && node build-watch.js",
     "prebuild": "rm -rf dist",
-    "postbuild": "cp -r assets/* dist/"
+    "postbuild": "cp -r assets/* dist/",
+    "prerelease": "yarn build",
+    "release": "bash .github-release.sh"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.117",
