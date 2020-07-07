@@ -11,3 +11,6 @@ export type AddWatchers = (accountIds: string[]) => Promise<boolean>;
 
 export const addServicedeskWatchers = "addServicedeskWatchers";
 export type AddServicedeskWatchers = (accountIds: string[]) => Promise<boolean>;
+
+export const alert = "alert";
+export type Alert = (message: string) => Promise<void>;

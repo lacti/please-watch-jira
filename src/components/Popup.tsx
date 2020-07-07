@@ -15,6 +15,7 @@ import {
 import { Eye } from "@zeit-ui/react-icons";
 import InputForm from "./InputForm";
 import WatcherGroup from "../models/watcherGroup";
+import { errorAlert } from "../utils/windowAlert";
 import { render } from "react-dom";
 import useMessageRPC from "chrome-extension-support/lib/rpc/useMessageRPC";
 import useWatcherGroups from "../state/useWatcherGroups";
@@ -34,7 +35,7 @@ function App() {
   const [watcherGroups, setWatcherGroups] = React.useState<WatcherGroup[]>([]);
 
   React.useEffect(() => {
-    getAllWatcherGroups().then(setWatcherGroups).catch(console.error);
+    getAllWatcherGroups().then(setWatcherGroups).catch(errorAlert);
   }, []);
 
   function onAdd() {
@@ -50,13 +51,13 @@ function App() {
     updateWatcherGroup(watcherGroup)
       .then(setWatcherGroups)
       .then(updateContextMenu)
-      .catch(console.error);
+      .catch(errorAlert);
   }
   function onDelete(watcherGroupId: string) {
     deleteWatcherGroup(watcherGroupId)
       .then(setWatcherGroups)
       .then(updateContextMenu)
-      .catch(console.error);
+      .catch(errorAlert);
   }
 
   return (

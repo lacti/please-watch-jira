@@ -1,6 +1,7 @@
 const documentUrlPatterns = [
   "*://*.atlassian.net/browse/*",
   "*://*.atlassian.net/jira/software/projects/*/boards/*?selectedIssue/*",
+  "*://*.atlassian.net/jira/software/*",
   "*://*.atlassian.net/servicedesk/*",
 ];
 

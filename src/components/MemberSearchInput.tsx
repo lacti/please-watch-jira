@@ -4,6 +4,7 @@ import { Input, Tooltip, useInput } from "@zeit-ui/react";
 
 import React from "react";
 import Watcher from "../models/watcher";
+import { errorAlert } from "../utils/windowAlert";
 import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
 
 const searchMember = useExecutionRPC().stub<rpcTypes.SearchMember>(
@@ -22,10 +23,12 @@ export default function MemberSearchInput({
   const { reset, bindings } = useInput("");
 
   function search(query: string) {
-    searchMember(projectKey, query).then((watchers) => {
-      onSearch(watchers);
-      reset();
-    });
+    searchMember(projectKey, query)
+      .then((watchers) => {
+        onSearch(watchers);
+        reset();
+      })
+      .catch(errorAlert);
   }
 
   function onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -40,6 +43,7 @@ export default function MemberSearchInput({
 
   return (
     <Tooltip
+      placement="bottom"
       text={
         searchable
           ? "Please enter query to search members."

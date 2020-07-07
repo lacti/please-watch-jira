@@ -4,6 +4,7 @@ import MemberSearchInput from "./MemberSearchInput";
 import React from "react";
 import { UserX } from "@zeit-ui/react-icons";
 import WatcherGroup from "../models/watcherGroup";
+import { errorAlert } from "../utils/windowAlert";
 import { isAcceptableDocumentUrl } from "../models/documentUrlPatterns";
 import { queryTabs } from "chrome-extension-support";
 import unique from "../utils/unique";
@@ -25,11 +26,13 @@ export default function InputForm({
   const [memberSearchable, setMemberSearchable] = React.useState(false);
 
   React.useEffect(() => {
-    queryTabs({ active: true, currentWindow: true }).then((tabs) => {
-      if (isAcceptableDocumentUrl(tabs[0]?.url)) {
-        setMemberSearchable(true);
-      }
-    });
+    queryTabs({ active: true, currentWindow: true })
+      .then((tabs) => {
+        if (isAcceptableDocumentUrl(tabs[0]?.url)) {
+          setMemberSearchable(true);
+        }
+      })
+      .catch(errorAlert);
   }, []);
 
   function updateData(partial: Partial<WatcherGroup>) {

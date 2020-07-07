@@ -2,11 +2,14 @@ import * as rpcTypes from "./rpc-types";
 
 import Watcher from "./models/watcher";
 import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
+import useLogger from "chrome-extension-support/lib/logger/useLogger";
 
 interface ConfluentMemberSearch {
   accountId: string;
   displayName: string;
 }
+
+const logger = useLogger();
 
 useExecutionRPC().serve<rpcTypes.SearchMember>(
   rpcTypes.searchMember,
@@ -24,7 +27,7 @@ useExecutionRPC().serve<rpcTypes.SearchMember>(
         }))
       );
 
-    console.debug("Fetch users from search", result);
+    logger.debug("Fetch users from search", result);
     return result;
   }
 );

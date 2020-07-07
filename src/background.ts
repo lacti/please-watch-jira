@@ -2,10 +2,14 @@ import * as rpcTypes from "./rpc-types";
 
 import WatcherGroup from "./models/watcherGroup";
 import documentUrlPatterns from "./models/documentUrlPatterns";
+import { errorAlert } from "./utils/windowAlert";
 import queryTabs from "chrome-extension-support/lib/chrome/queryTabs";
 import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
+import useLogger from "chrome-extension-support/lib/logger/useLogger";
 import useMessageRPC from "chrome-extension-support/lib/rpc/useMessageRPC";
 import useWatcherGroups from "./state/useWatcherGroups";
+
+const logger = useLogger();
 
 async function inBackground() {
   const { getAllWatcherGroups } = useWatcherGroups();
@@ -17,7 +21,7 @@ async function inBackground() {
 
   const rootMenuId = "please-watch-jira";
   async function onMenuClick(watcherGroup: WatcherGroup) {
-    console.log(watcherGroup);
+    logger.debug(watcherGroup);
     if (watcherGroup.watchers.length === 0) {
       return;
     }
@@ -28,9 +32,11 @@ async function inBackground() {
     const adder = url?.includes("servicedesk")
       ? addServicedeskWatchers
       : addWatchers;
-    adder(watcherGroup.watchers.map((w) => w.accountId))
-      .then(console.info)
-      .catch(console.error);
+    try {
+      await adder(watcherGroup.watchers.map((w) => w.accountId));
+    } catch (error) {
+      errorAlert(error);
+    }
   }
 
   async function updateContextMenu() {
