@@ -2,7 +2,7 @@
   "name": "please-watch-jira",
   "private": true,
   "description": "Jira automation to add watchers easily using Chrome extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "author": {
     "name": "lacti/jaeyoung.choi",
