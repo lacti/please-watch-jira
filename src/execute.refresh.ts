@@ -4,9 +4,9 @@ import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
 
 useExecutionRPC().serve<rpcTypes.Refresh>(
   rpcTypes.refresh,
-  async ({ confirm = false }): Promise<void> => {
+  async (message, { confirm = false }): Promise<void> => {
     if (confirm) {
-      if (window.confirm("Do you want to refresh this page?")) {
+      if (window.confirm(message)) {
         window.location.reload();
       }
     } else {

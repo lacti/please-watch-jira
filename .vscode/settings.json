@@ -3,5 +3,9 @@
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
   }
 }

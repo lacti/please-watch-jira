@@ -59,18 +59,6 @@ export default function InputForm({
               })
             }
           />
-          <Spacer y={0.5} />
-          <Input
-            placeholder="Project key"
-            label="Project key"
-            width="100%"
-            value={watcherGroup.projectKey}
-            onBlur={(event) =>
-              updateData({
-                projectKey: event.target.value,
-              })
-            }
-          />
           <Spacer y={1} />
           {watcherGroup.watchers.map((w) => (
             <div key={w.accountId}>
@@ -94,7 +82,6 @@ export default function InputForm({
           ))}
           <Spacer y={0.5} />
           <MemberSearchInput
-            projectKey={watcherGroup.projectKey}
             searchable={memberSearchable}
             onSearch={(ws) =>
               updateData({

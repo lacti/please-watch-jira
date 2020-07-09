@@ -35,7 +35,12 @@ async function inBackground() {
       : addWatchers;
     try {
       await adder(watcherGroup.watchers.map((w) => w.accountId));
-      await windowRefresh({ confirm: true });
+      await windowRefresh(
+        "After refreshing the page, you can see the changes.\nWould you like to refresh now?",
+        {
+          confirm: true,
+        }
+      );
     } catch (error) {
       errorAlert(error);
     }

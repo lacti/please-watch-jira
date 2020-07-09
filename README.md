@@ -2,6 +2,8 @@
 
 Chrome extension to add issue watchers easily.
 
+![Preview](./docs/preview.png)
+
 ## Installation
 
 1. Download latest `please-watch-jira.zip` from [releases](https://github.com/music-flo/please-watch-jira/releases).
@@ -21,12 +23,10 @@ Chrome extension to add issue watchers easily.
    ![Atlassian url](./docs/atlassian-url.png)
    You can add a new group using `New` button.
    ![Use new button](./docs/use-new-button.png)
-2. Input a name and project key. You can find your project key in your atlassian URL.
-   ![Project key from url](./docs/project-key-from-atlassian-url.png)
-3. And then, you can search watchers using `Keyword input`. All things are valid, you can see new members when you press enter key from `Keyword input`. If you want to delete a member, just click it.
+2. And then, you can search watchers using `Keyword input`. All things are valid, you can see new members when you press enter key from `Keyword input`. If you want to delete a member, just click it.
    ![Settings popup](./docs/settings-popup.png)
-4. After finished, click the icon of this extension to close this settings popup.
-5. Open Jira issue or Servicedesk page, add watchers using context menu.
+3. After finished, click the icon of this extension to close this settings popup.
+4. Open Jira issue or Servicedesk page, add watchers using context menu.
    ![Context-menu](./docs/context-menu.png)
 
 ## Update plugins

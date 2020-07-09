@@ -12,18 +12,16 @@ const searchMember = useExecutionRPC().stub<rpcTypes.SearchMember>(
 );
 
 export default function MemberSearchInput({
-  projectKey,
   onSearch,
   searchable,
 }: {
-  projectKey: string;
   onSearch: (watcher: Watcher[]) => void;
   searchable: boolean;
 }) {
   const { reset, bindings } = useInput("");
 
-  function search(query: string) {
-    searchMember(projectKey, query)
+  function search(keyword: string) {
+    searchMember(keyword)
       .then((watchers) => {
         onSearch(watchers);
         reset();
@@ -33,9 +31,6 @@ export default function MemberSearchInput({
 
   function onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
     const query = (event.target as HTMLInputElement).value;
-    if (!projectKey) {
-      return;
-    }
     if (event.key === "Enter") {
       search(query);
     }

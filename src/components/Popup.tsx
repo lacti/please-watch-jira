@@ -41,7 +41,6 @@ function App() {
   function onAdd() {
     addWatcherGroup({
       groupName: `Group #${watcherGroups.length + 1}`,
-      projectKey: "",
       watchers: [],
     })
       .then(setWatcherGroups)
