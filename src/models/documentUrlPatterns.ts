@@ -1,17 +1,8 @@
-const documentUrlPatterns = [
-  "*://*.atlassian.net/browse/*",
-  "*://*.atlassian.net/jira/software/projects/*/boards/*?selectedIssue/*",
-  "*://*.atlassian.net/jira/software/*",
-  "*://*.atlassian.net/servicedesk/*",
-];
+const documentUrlPatterns = ["*://*.atlassian.net/*"];
 
 export default documentUrlPatterns;
 
-const candidates = [
-  "atlassian.net/browse",
-  "atlassian.net/jira",
-  "atlassian.net/servicedesk",
-];
+const candidates = ["atlassian.net"];
 
 export function isAcceptableDocumentUrl(url?: string) {
   if (!url) {

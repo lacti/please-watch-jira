@@ -31,12 +31,12 @@ useExecutionRPC().serve<rpcTypes.AddWatchers>(
 );
 
 function findIssueKeyFromUrl() {
-  const pathname = window.location.pathname;
+  const { search, pathname } = window.location;
   if (pathname.startsWith("/browse/")) {
     return pathname.substring("/browse/".length);
   }
-  if (pathname.startsWith("/jira/software/projects")) {
-    return (location.search
+  if (search.includes("selectedIssue=")) {
+    return (search
       .split(/[?&]/g)
       .filter(Boolean)
       .map((each) => each.split("="))
