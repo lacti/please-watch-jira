@@ -1,6 +1,6 @@
 import * as rpcTypes from "../rpc-types";
 
-import { Input, Tooltip, useInput } from "@zeit-ui/react";
+import { Input, Spacer, Spinner, Tooltip, useInput } from "@zeit-ui/react";
 
 import React from "react";
 import Watcher from "../models/watcher";
@@ -19,14 +19,18 @@ export default function MemberSearchInput({
   searchable: boolean;
 }) {
   const { reset, bindings } = useInput("");
+  const [querying, setQuerying] = React.useState(false);
 
-  function search(keyword: string) {
-    searchMember(keyword)
-      .then((watchers) => {
-        onSearch(watchers);
-        reset();
-      })
-      .catch(errorAlert);
+  async function search(keyword: string) {
+    setQuerying(true);
+    try {
+      const watchers = await searchMember(keyword);
+      onSearch(watchers);
+      reset();
+    } catch (error) {
+      errorAlert(error);
+    }
+    setQuerying(false);
   }
 
   function onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -46,6 +50,12 @@ export default function MemberSearchInput({
       }
       type={searchable ? "dark" : "error"}
     >
+      {querying && (
+        <>
+          <Spinner />
+          <Spacer y={1} />
+        </>
+      )}
       <Input
         {...bindings}
         placeholder="Enter here"
