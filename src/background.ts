@@ -3,7 +3,6 @@ import * as rpcTypes from "./rpc-types";
 import WatcherGroup from "./models/watcherGroup";
 import documentUrlPatterns from "./models/documentUrlPatterns";
 import { errorAlert } from "./utils/windowAlert";
-import queryTabs from "chrome-extension-support/lib/chrome/queryTabs";
 import useExecutionRPC from "chrome-extension-support/lib/rpc/useExecutionRPC";
 import useLogger from "chrome-extension-support/lib/logger/useLogger";
 import useMessageRPC from "chrome-extension-support/lib/rpc/useMessageRPC";
@@ -21,14 +20,18 @@ async function inBackground() {
   );
 
   const rootMenuId = "please-watch-jira";
-  async function onMenuClick(watcherGroup: WatcherGroup) {
+  async function onMenuClick(
+    watcherGroup: WatcherGroup,
+    currentTab: chrome.tabs.Tab
+  ) {
+    if (!currentTab) {
+      logger.warn("No current tab from context menu");
+      return;
+    }
     logger.debug(watcherGroup);
     if (watcherGroup.watchers.length === 0) {
       return;
     }
-    const currentTab = (
-      await queryTabs({ active: true, currentWindow: true })
-    )[0];
     const url = currentTab?.url;
     const adder = url?.includes("servicedesk")
       ? addServicedeskWatchers
@@ -62,7 +65,7 @@ async function inBackground() {
         parentId: rootMenuId,
         id: watcherGroup.id,
         title: `${watcherGroup.groupName} (${watcherGroup.watchers.length})`,
-        onclick: () => onMenuClick(watcherGroup),
+        onclick: (_, tab) => onMenuClick(watcherGroup, tab),
       });
     }
   }
