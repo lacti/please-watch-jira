@@ -1,13 +1,23 @@
 {
   "manifest_version": 2,
   "name": "Please Watch Jira",
+  "version": "1.0.4",
+
   "description": "Add Watchers into Jira Issue",
-  "version": "1.0.3",
   "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
-  "background": { "page": "background.html", "persistent": true },
+
   "browser_action": {
     "default_icon": "icon128.png",
     "default_popup": "popup.html"
   },
-  "permissions": ["tabs", "activeTab", "contextMenus", "storage"]
+
+  "author": "jaeyoung.choi <lactrious@gmail.com>",
+  "background": { "page": "background.html", "persistent": true },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "contextMenus",
+    "storage",
+    "https://*.atlassian.net/*"
+  ]
 }
