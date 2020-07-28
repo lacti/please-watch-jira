@@ -52,7 +52,7 @@ export default function InputForm({
             placeholder="Group name"
             label="Group name"
             width="100%"
-            value={watcherGroup.groupName}
+            defaultValue={watcherGroup.groupName}
             onBlur={(event) =>
               updateData({
                 groupName: event.target.value,
