@@ -37,7 +37,7 @@ interface AccountCentricUserSearchResult {
 }
 
 async function searchByGraphql(keyword: string, count: number) {
-  const cloudId = findCloudId();
+  const cloudId = findCloudId() ?? (await requestCloudId());
   if (!cloudId) {
     throw new Error("Cannot find cloud id");
   }
@@ -47,7 +47,7 @@ async function searchByGraphql(keyword: string, count: number) {
     variables: {
       displayName: keyword,
       count,
-      cloudId: cloudId,
+      cloudId,
     },
     query: `query Search($cloudId: String!, $displayName: String!, $count: Int) {
   AccountCentricUserSearch(displayName: $displayName, cloudId: $cloudId, count: $count, filter: {excludeInactive: true, excludeBots: true}) {
@@ -84,4 +84,32 @@ function findCloudId(): string | null {
     }
   }
   return null;
+}
+
+async function requestCloudId(): Promise<string | null> {
+  try {
+    const response = await fetch(
+      "/cgraphql?q=QueryPreloader_SPAViewContextQuery",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-apollo-operation-name": "SPAViewContextQuery",
+        },
+        body:
+          '{"query":"query SPAViewContextQuery{siteConfiguration{__typename tenantId }}"}',
+      }
+    );
+    const queryResult: {
+      data: {
+        siteConfiguration: {
+          tenantId: string;
+        };
+      };
+    } = await response.json();
+    return queryResult?.data?.siteConfiguration?.tenantId ?? null;
+  } catch (error) {
+    console.warn(error);
+    return null;
+  }
 }
