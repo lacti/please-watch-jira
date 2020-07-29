@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Please Watch Jira",
-  "version": "1.0.4",
+  "version": "1.0.5",
 
   "description": "Add Watchers into Jira Issue",
   "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
@@ -14,7 +14,6 @@
   "author": "jaeyoung.choi <lactrious@gmail.com>",
   "background": { "page": "background.html", "persistent": true },
   "permissions": [
-    "tabs",
     "activeTab",
     "contextMenus",
     "storage",
