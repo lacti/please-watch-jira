@@ -1,4 +1,11 @@
-import { Button, Collapse, Fieldset, Input, Spacer } from "@zeit-ui/react";
+import {
+  Button,
+  Collapse,
+  Fieldset,
+  Input,
+  Spacer,
+  useInput,
+} from "@zeit-ui/react";
 
 import MemberSearchInput from "./MemberSearchInput";
 import React from "react";
@@ -24,6 +31,9 @@ export default function InputForm({
     initialWatcherGroup
   );
   const [memberSearchable, setMemberSearchable] = React.useState(false);
+  const { bindings: watcherGroupNameBindings } = useInput(
+    watcherGroup.groupName
+  );
 
   React.useEffect(() => {
     queryTabs({ active: true, currentWindow: true })
@@ -49,10 +59,10 @@ export default function InputForm({
       <Fieldset>
         <Fieldset.Subtitle>
           <Input
+            {...watcherGroupNameBindings}
             placeholder="Group name"
             label="Group name"
             width="100%"
-            defaultValue={watcherGroup.groupName}
             onBlur={(event) =>
               updateData({
                 groupName: event.target.value,
